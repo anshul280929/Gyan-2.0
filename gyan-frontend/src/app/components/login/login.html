@@ -1,0 +1,17 @@
+<mat-card style="max-width: 400px; margin: 100px auto; padding: 20px;">
+  <h2 style="text-align:center;">Login</h2>
+
+  <mat-form-field appearance="outline" style="width:100%;">
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="email">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="width:100%;">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" [(ngModel)]="password">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" style="width:100%;" (click)="login()">
+    Login
+  </button>
+</mat-card>

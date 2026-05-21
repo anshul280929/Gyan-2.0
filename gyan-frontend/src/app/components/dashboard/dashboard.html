@@ -1,0 +1,76 @@
+<!-- TOP NAVBAR -->
+<div style="background:#3f51b5; color:white; padding:15px; display:flex; justify-content:space-between;">
+  <h2>Document Dashboard</h2>
+  <button mat-button (click)="logout()">Logout</button>
+</div>
+
+<div style="max-width:900px; margin:auto; padding:20px;">
+
+  <!-- UPLOAD SECTION -->
+  <mat-card style="margin-bottom:20px;">
+    <h3>Upload Document</h3>
+
+    <input type="file" (change)="onFileSelected($event)">
+    
+    <p *ngIf="selectedFile">
+      Selected: <b>{{ selectedFile.name }}</b>
+    </p>
+
+    <button 
+      mat-raised-button 
+      color="primary" 
+      (click)="upload()" 
+      [disabled]="uploading">
+
+      {{ uploading ? 'Uploading...' : 'Upload' }}
+
+    </button>
+  </mat-card>
+
+
+  <mat-card style="margin-bottom:20px;">
+  <h3>Ask AI</h3>
+
+  <input 
+    [(ngModel)]="question" 
+    placeholder="Ask something about your documents"
+    style="width:100%; padding:10px;"
+  >
+
+  <br><br>
+
+  <button mat-raised-button color="accent" (click)="askAI()">
+    Ask
+  </button>
+
+  <p *ngIf="loadingAnswer">Thinking...</p>
+
+  <mat-card *ngIf="answer" style="margin-top:10px;">
+    <b>Answer:</b>
+    <p>{{ answer }}</p>
+  </mat-card>
+</mat-card>
+
+  <!-- DOCUMENT LIST -->
+  <h3>Your Documents</h3>
+
+  <div *ngIf="documents.length === 0">
+    <p>No documents uploaded yet.</p>
+  </div>
+
+  <mat-card *ngFor="let doc of documents" style="margin-bottom:10px;">
+    <div style="display:flex; justify-content:space-between;">
+      <div>
+        <b>{{ doc.filename }}</b>
+        <p style="font-size:12px; color:gray;">
+          {{ doc.fileType }} • {{ doc.fileSize }} bytes
+        </p>
+      </div>
+
+      <button mat-button color="primary">
+        View
+      </button>
+    </div>
+  </mat-card>
+
+</div>
