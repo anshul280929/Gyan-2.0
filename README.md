@@ -30,24 +30,15 @@ The project is split into three app services plus supporting infrastructure:
   Search index for processed documents
 
 ## Architecture Explaination
-Frontend (React)
-        |
-        v
-Backend (Spring Boot)
-        |
-        +------------------+
-        |                  |
-        v                  v
- PostgreSQL         Kafka Queue
-                           |
-                           v
-                  Document Processor
-                           |
-                           v
-                 Embedding Service
-                           |
-                           v
-                    Elasticsearch
+```mermaid
+flowchart TD
+    A[Frontend<br/>React] --> B[Backend<br/>Spring Boot]
+    B --> C[PostgreSQL]
+    B --> D[Kafka Queue]
+    D --> E[Document Processor]
+    E --> F[Embedding Service]
+    F --> G[Elasticsearch]
+```
 
 
 
