@@ -29,6 +29,28 @@ The project is split into three app services plus supporting infrastructure:
 - `elasticsearch`
   Search index for processed documents
 
+## Architecture Explaination
+Frontend (React)
+        |
+        v
+Backend (Spring Boot)
+        |
+        +------------------+
+        |                  |
+        v                  v
+ PostgreSQL         Kafka Queue
+                           |
+                           v
+                  Document Processor
+                           |
+                           v
+                 Embedding Service
+                           |
+                           v
+                    Elasticsearch
+
+
+
 ## Tech Stack
 
 ### Frontend
